@@ -1,6 +1,8 @@
-# PersonalFinanceAngular
+# PersonalFinance-Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+This project is a FrontEnd with Angular to [PersonalFinance-API](https://github.com/wvreis/PersonalFinance-API). It is still under construction.
+
+Este projeto é um FrontEnd feito em Angular para o [PersonalFinance-API](https://github.com/wvreis/PersonalFinance-API). Ainda está em construção.
 
 ## Development server
 
