@@ -1,0 +1,9 @@
+nav {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+}
+
+main {
+    margin-left: 280px;
+}

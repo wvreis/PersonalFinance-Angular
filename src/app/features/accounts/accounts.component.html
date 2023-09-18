@@ -1,0 +1,37 @@
+<div class="container">
+
+    <div class="row" >
+        <div class="col-lg-6 " *ngFor="let account of accounts$ | async">
+            <div class="card p-3 mb-2">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                        <div class="icon"> <img class="iconSVG" src="../../../assets/bank.svg" alt=""> </div>
+                        <div class="ms-2 c-details">
+                            <h6 class="mb-0">{{ account.description }}</h6>
+                        </div>
+                    </div>
+                    <div [ngClass]="account.status ? 'badgeTrue' : 'badgeFalse'"> 
+                        <span>{{ account.status ? 'Ativo' : 'Inativo' }}</span> 
+                    </div>
+                </div>
+                <div class="d-flex mt-4">
+                    <div class="col-8">                      
+                        <span class="text1">{{ account.bank }} 
+                            <span class="text2">
+                                (nº {{ account.bankId }})
+                            </span>
+                        </span> 
+                    </div>
+                    <div class="fs-5 border-5 col-4 text-end">
+                        <span class="text2 fs-6 text end">
+                            Saldo Inicial:
+                        </span>                        
+                        {{ account.openingBalance | currency : 'R$' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>       
+
+</div>
