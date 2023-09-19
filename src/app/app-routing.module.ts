@@ -4,20 +4,14 @@ import { AccountsComponent } from './features/accounts/accounts.component';
 import { AppComponent } from './app.component';
 import { PanelComponent } from './features/panel/panel.component';
 import { TransactionsComponent } from './features/transactions/transactions.component';
+import { AccountFormComponent } from './features/accounts/account-form/account-form.component';
 
 const routes: Routes = [
-  {
-    path: 'accounts',
-    component: AccountsComponent
-  },
-  {
-    path: 'transactions',
-    component: TransactionsComponent
-  },
-  {
-    path: 'panel',
-    component: PanelComponent
-  }
+  { path: 'accounts', component: AccountsComponent },
+  { path: 'accounts/new', component: AccountFormComponent },
+  { path: 'accounts/:id', component: AccountFormComponent },
+  { path: 'transactions', component: TransactionsComponent },
+  { path: 'panel', component: PanelComponent }
 ];
 
 @NgModule({

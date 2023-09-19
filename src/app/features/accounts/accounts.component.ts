@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, take, tap } from 'rxjs';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { Account } from 'src/app/core/models/account.model';
+import { AccountService } from './account.service';
 
 @Component({
   selector: 'app-accounts',
@@ -9,17 +10,40 @@ import { Account } from 'src/app/core/models/account.model';
   styleUrls: ['./accounts.component.css']
 })
 export class AccountsComponent implements OnInit, OnDestroy {
-  accounts$!: Observable<any>;
+  accounts!: Account[];
+  @Input() searchInfo: string = '';
+  subscription!: Subscription;
+  destroy$ = new Subject<void>();
+  loading: boolean = true;
 
-  constructor(private http: HttpClient) {
-    
-  }
+  constructor(
+    private readonly http: HttpClient,
+    private readonly accountService: AccountService
+  ) {}
 
   ngOnInit(): void {
-    this.accounts$ = this.http.get('accounts');
-  }  
-  
+    this.GetAccounts();
+  }
+
   ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  GetAccounts(): void {
+    this.loading = true;    
     
+    this.accountService
+      .GetAccounts(this.searchInfo)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({ 
+        next: accList=> this.accounts = accList,
+        complete: () => this.loading = false
+      });          
+  }
+
+  CleanSearchInfo(): void{
+    this.searchInfo = '';
+    this.GetAccounts();
   }
 }

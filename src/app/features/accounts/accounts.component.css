@@ -5,7 +5,7 @@ body {
 .card {
     border: none;
     border-radius: 10px;
-    background-color: #f8f8f8;
+    background-color: #f8f8f8;    
 }
 
 .c-details span {
@@ -71,4 +71,8 @@ body {
 
 .text2 {
     color: #a5aec0
+}
+
+.withoutDecoration {
+    text-decoration: none;
 }
