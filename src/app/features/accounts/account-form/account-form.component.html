@@ -1,3 +1,34 @@
-<p>account-form works!</p>
+<div class="container">
+  <span *ngIf="loading === false">{{ account.description }}</span>
+  <form>
+    <div class="mb-3">
+      <label for="description" class="form-label">Descrição</label>
+      <input type="text" class="form-control" id="description" name="description" required>
+    </div>
 
-<span *ngIf="loading === false">{{ account.description }}</span>
+    <div class="mb-3">
+      <label for="openingBalance" class="form-label">Saldo Inicial</label>
+      <input type="number" class="form-control" id="openingBalance" name="openingBalance" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="status" class="form-label">Status</label>
+      <select class="form-select" id="status" name="status" required>
+        <option value="true">Active</option>
+        <option value="false">Inactive</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="bank" class="form-label">Banco</label>
+      <input type="text" class="form-control" id="bank" name="bank" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="accountType" class="form-label">Tipo da Conta</label>
+      <input type="text" class="form-control" id="accountType" name="accountType" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </form>
+</div>
