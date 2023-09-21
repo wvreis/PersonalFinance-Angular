@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { Account } from 'src/app/core/models/account.model';
@@ -17,7 +16,6 @@ export class AccountsComponent implements OnInit, OnDestroy {
   loading: boolean = true;
 
   constructor(
-    private readonly http: HttpClient,
     private readonly accountService: AccountService
   ) {}
 
@@ -31,15 +29,15 @@ export class AccountsComponent implements OnInit, OnDestroy {
   }
 
   GetAccounts(): void {
-    this.loading = true;    
-    
+    this.loading = true;
+
     this.accountService
       .GetAccounts(this.searchInfo)
       .pipe(takeUntil(this.destroy$))
-      .subscribe({ 
+      .subscribe({
         next: accList=> this.accounts = accList,
         complete: () => this.loading = false
-      });          
+      });
   }
 
   CleanSearchInfo(): void{

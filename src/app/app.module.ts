@@ -12,6 +12,7 @@ import { TransactionsComponent } from './features/transactions/transactions.comp
 import { AccountFormComponent } from './features/accounts/account-form/account-form.component';
 import { ErrorInterceptor } from "./core/interceptors/error.interceptor";
 import { ApiInterceptor } from "./core/interceptors/api.interceptor";
+import { NavMenuComponent } from './core/layout/nav-menu/nav-menu.component';
 
 @NgModule({
   declarations: [
@@ -19,20 +20,21 @@ import { ApiInterceptor } from "./core/interceptors/api.interceptor";
     AccountsComponent,
     PanelComponent,
     TransactionsComponent,
-    AccountFormComponent
+    AccountFormComponent,
+    NavMenuComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,    
+    AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    FormsModule,  
+    FormsModule,
   ],
   providers: [
     HttpClient,
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },    
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

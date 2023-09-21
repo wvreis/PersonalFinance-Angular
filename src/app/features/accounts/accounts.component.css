@@ -5,7 +5,7 @@ body {
 .card {
     border: none;
     border-radius: 10px;
-    background-color: #f8f8f8;    
+    background-color: #f8f8f8;
 }
 
 .c-details span {
@@ -22,7 +22,7 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 39px
-    
+
 }
 
 .iconSVG {
@@ -53,15 +53,6 @@ body {
     color: #25252573;
     justify-content: center;
     align-items: center
-}
-
-.progress {
-    height: 10px;
-    border-radius: 10px
-}
-
-.progress div {
-    background-color: red
 }
 
 .text1 {
