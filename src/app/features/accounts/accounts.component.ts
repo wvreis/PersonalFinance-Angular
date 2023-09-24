@@ -36,6 +36,7 @@ export class AccountsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: accList=> this.accounts = accList,
+        error: err => console.log(err.name),
         complete: () => this.loading = false
       });
   }

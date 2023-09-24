@@ -13,6 +13,7 @@ import { AccountFormComponent } from './features/accounts/account-form/account-f
 import { ErrorInterceptor } from "./core/interceptors/error.interceptor";
 import { ApiInterceptor } from "./core/interceptors/api.interceptor";
 import { NavMenuComponent } from './core/layout/nav-menu/nav-menu.component';
+import { ErrorPopupComponent } from './shared/error-popup/error-popup.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NavMenuComponent } from './core/layout/nav-menu/nav-menu.component';
     PanelComponent,
     TransactionsComponent,
     AccountFormComponent,
-    NavMenuComponent
+    NavMenuComponent,
+    ErrorPopupComponent
   ],
   imports: [
     BrowserModule,
