@@ -1,4 +1,4 @@
 export class AccountType {
-    Id!: number;
-    Description!: string;    
+    id!: number;
+    description!: string;    
 }

@@ -20,7 +20,7 @@ export class AccountsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.GetAccounts();
+    this.getAccounts();
   }
 
   ngOnDestroy(): void {
@@ -28,11 +28,11 @@ export class AccountsComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  GetAccounts(): void {
+  getAccounts(): void {
     this.loading = true;
 
     this.accountService
-      .GetAccounts(this.searchInfo)
+      .getAccounts(this.searchInfo)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: accList=> this.accounts = accList,
@@ -40,8 +40,8 @@ export class AccountsComponent implements OnInit, OnDestroy {
       });
   }
 
-  CleanSearchInfo(): void{
+  cleanSearchInfo(): void{
     this.searchInfo = '';
-    this.GetAccounts();
+    this.getAccounts();
   }
 }

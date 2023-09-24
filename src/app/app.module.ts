@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -29,6 +29,7 @@ import { NavMenuComponent } from './core/layout/nav-menu/nav-menu.component';
     NgbModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     HttpClient,

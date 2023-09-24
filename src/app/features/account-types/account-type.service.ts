@@ -12,7 +12,7 @@ export class AccountTypeService {
 
   constructor(private http: HttpClient) { }
 
-  GetAccountTypes(): Observable<AccountType[]>{
+  getAccountTypes(): Observable<AccountType[]>{
     return this.http
       .get('accountTypes/getAllAccountsTypes')
       .pipe(map((accountTypes) => <AccountType[]>accountTypes));

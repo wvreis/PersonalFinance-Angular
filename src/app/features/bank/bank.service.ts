@@ -11,7 +11,7 @@ export class BankService {
 
   constructor(private http: HttpClient) { }
 
-  GetBanks(): Observable<Bank[]>{
+  getBanks(): Observable<Bank[]>{
     return this.http
       .get('banks/getAllBanks')
       .pipe(map((banks) => <Bank[]>banks));

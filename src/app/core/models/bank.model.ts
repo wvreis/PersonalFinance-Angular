@@ -1,5 +1,5 @@
 export class Bank {
-    Id!: number;
-    Number!: number;
-    Name!: string;
+    id!: number;
+    number!: number;
+    name!: string;
 }

@@ -1,33 +1,60 @@
 <div class="container">
-  <span *ngIf="loading === false">{{ account.description }}</span>
-  <form>
+  <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
     <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="flexSwitchCheckDefault"        
+        formControlName="status"
+      />
       <label class="form-check-label" for="flexSwitchCheckDefault">Ativo</label>
     </div>
 
     <div class="mb-3">
       <label for="description" class="form-label">Descrição</label>
-      <input type="text" class="form-control" id="description" name="description" required>
+      <input
+        type="text"
+        class="form-control"
+        id="description"
+        name="description"
+        formControlName="description"
+      />
     </div>
 
     <div class="mb-3">
       <label for="openingBalance" class="form-label">Saldo Inicial</label>
-      <input type="number" class="form-control" id="openingBalance" name="openingBalance" required>
+      <input
+        type="number"
+        class="form-control"
+        id="openingBalance"
+        name="openingBalance"
+        formControlName="openingBalance"
+      />
     </div>
 
     <div class="mb-3 form-floating">
-      <select class="form-select" id="floatingSelect" aria-label="Banco">
+      <select 
+        class="form-select" 
+        id="floatingSelect" 
+        aria-label="Banco"
+        formControlName="bankId"
+      >
         <option selected>Escolha um Banco</option>
-        <option value="1">Banco do Brasil</option>
+        <option *ngFor="let bank of banks$ | async" [ngValue]="bank.id">{{ bank.name }}</option>
       </select>
       <label for="floatingSelect">Banco</label>
     </div>
 
     <div class="mb-3 form-floating">
-      <select class="form-select" id="floatingSelect" aria-label="Tipo de Conta">
+      <select
+        class="form-select"
+        id="floatingSelect"
+        aria-label="Tipo de Conta"
+        formControlName="accountTypeId"
+      >
         <option selected>Escolha um Tipo de Conta</option>
-        <option value="1">Corrente</option>
+        <option *ngFor="let accountType of accountTypes$ | async" [ngValue]="accountType.id">{{ accountType.description }}</option>
       </select>
       <label for="floatingSelect">Tipo de Conta</label>
     </div>
