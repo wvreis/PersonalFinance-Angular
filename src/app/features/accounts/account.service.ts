@@ -28,11 +28,11 @@ export class AccountService {
             .pipe(map((accounts) => <Account[]>accounts));
     }
 
-    postAccount(account: NewAccount): Observable<any> { 
+    postAccount(account: NewAccount): Observable<any> {
         console.log(JSON.stringify(account));
 
         return this.http
-            .post('accounts/PostAccount',JSON.stringify(account))      
-            .pipe(map(resp => resp))             
+            .post('accounts/PostAccount',JSON.stringify(account), {headers: {'content-type': 'application/json'}})
+            .pipe(map(resp => resp))
     }
 }

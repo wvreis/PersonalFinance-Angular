@@ -21,7 +21,7 @@ export class AccountFormComponent implements OnInit, OnDestroy {
   account!: Account;
   loading: boolean = true;
   formErrors!: string;
-  
+
   destroy$ = new Subject<void>();
   banks$!: Observable<Bank[]>;
   accountTypes$!: Observable<AccountType[]>;
@@ -32,7 +32,7 @@ export class AccountFormComponent implements OnInit, OnDestroy {
     private readonly bankService: BankService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly formBuilder: FormBuilder,
-    private readonly router: Router    
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -88,7 +88,7 @@ export class AccountFormComponent implements OnInit, OnDestroy {
 
     if (this.accountForm.valid){
 
-      let valueSubmit = Object.assign({}, this.accountForm.value)    
+      let valueSubmit = Object.assign({}, this.accountForm.value)
 
       var newAccount = new NewAccount(
         valueSubmit['description'],
@@ -101,11 +101,10 @@ export class AccountFormComponent implements OnInit, OnDestroy {
         .postAccount(newAccount)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
-          next: acc => console.log(acc),
           error: (errors) => {
             console.log(errors);
           },
-          complete: () => this.router.navigate([AccountsComponent])
+          complete: () => this.router.navigate(['accounts'])
         });
     }
 
