@@ -67,3 +67,12 @@ body {
 .withoutDecoration {
     text-decoration: none;
 }
+
+.add-button {
+    border-radius: 100%;
+    font-weight: bolder;
+    font-size: 120%;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;    
+}

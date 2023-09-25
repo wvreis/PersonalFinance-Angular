@@ -6,10 +6,10 @@ import { BankService } from './../../bank/bank.service';
 import { AccountService } from './../account.service';
 import { AccountTypeService } from '../../account-types/account-type.service';
 import { AccountsComponent } from '../accounts.component';
-import { Account } from 'src/app/core/models/account.model';
-import { Bank } from 'src/app/core/models/bank.model';
-import { AccountType } from 'src/app/core/models/account-type.model';
-import { NewAccount } from 'src/app/core/models/new-account.model';
+import { Account } from 'src/app/core/models/account/account.model';
+import { Bank } from 'src/app/core/models/bank/bank.model';
+import { AccountType } from 'src/app/core/models/account-type/account-type.model';
+import { AddAccount } from 'src/app/core/models/account/add-account.model';
 
 @Component({
   selector: 'app-account-form',
@@ -90,7 +90,7 @@ export class AccountFormComponent implements OnInit, OnDestroy {
 
       let valueSubmit = Object.assign({}, this.accountForm.value)
 
-      var newAccount = new NewAccount(
+      var newAccount = new AddAccount(
         valueSubmit['description'],
         valueSubmit['openingBalance'],
         valueSubmit['bankId'],

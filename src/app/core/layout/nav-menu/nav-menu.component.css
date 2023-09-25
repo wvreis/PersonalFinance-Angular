@@ -10,9 +10,21 @@
   z-index: 1;
 }
 
+.menu-toggle-button {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  .nav-menu{
+  .nav-menu {
     width: 100%;
     position: relative;
+  }
+
+  .menu-items-d-none > * {
+     display: none;
+  }
+
+  .menu-toggle-button {
+    display: inline-block;
   }
 }

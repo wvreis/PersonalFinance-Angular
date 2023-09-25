@@ -1,4 +1,4 @@
-export class NewAccount {    
+export class AddAccount {    
     description!: string;
     openingBalance!: number;    
     bankId!: number;

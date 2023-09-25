@@ -1,39 +1,46 @@
 <nav class="nav-menu">
-  <a href="./" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-    <span class="fs-4">Finanças Pessoais</span>
-  </a>
-  <hr>
-  <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item">
-      <a class="nav-link text-white" routerLink="panel" routerLinkActive="active" >
-        <svg class="bi me-2" width="16" height="16"><use xlink:href="#"/></svg>
-        Painel
-      </a>
-    </li>
-    <li>
-      <a class="nav-link text-white" routerLink="accounts" routerLinkActive="active">
-        <svg class="bi me-2" width="16" height="16"><use xlink:href="#"/></svg>
-        Contas
-      </a>
-    </li>
-    <li>
-      <a class="nav-link text-white" routerLink="transactions" routerLinkActive="active">
-        <svg class="bi me-2" width="16" height="16"><use xlink:href="#"/></svg>
-        Movimentações
-      </a>
-    </li>
-  </ul>
-  <hr>
-  <div class="dropdown">
-    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-      👤
-      <strong>User</strong>
+  <div class="row">
+    <a href="./" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none col-11 ">
+      <span class="fs-4">Finanças Pessoais</span>
     </a>
-    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-      <li><a class="dropdown-item" href="#">Login</a></li>
-      <li><a class="dropdown-item" href="#">Register</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#">Sign out</a></li>
+    <button (click)="toggleMenu()" class="col-1 btn btn-dark menu-toggle-button">
+      ≡
+    </button>
+  </div>
+  <div [ngClass]="isMenuVisible ? '' : 'menu-items-d-none'">
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="panel" routerLinkActive="active" >
+          📊
+          Painel
+        </a>
+      </li>
+      <li>
+        <a class="nav-link text-white" routerLink="accounts" routerLinkActive="active">
+          💳
+          Contas
+        </a>
+      </li>
+      <li>
+        <a class="nav-link text-white" routerLink="transactions" routerLinkActive="active">
+          💵
+          Movimentações
+        </a>
+      </li>
     </ul>
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        👤
+        <strong>User</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="#">Login</a></li>
+        <li><a class="dropdown-item" href="#">Register</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </div>
   </div>
 </nav>

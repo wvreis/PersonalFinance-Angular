@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { Account } from 'src/app/core/models/account.model';
-import { NewAccount } from 'src/app/core/models/new-account.model';
+import { Account } from 'src/app/core/models/account/account.model';
+import { AddAccount } from 'src/app/core/models/account/add-account.model';
 import { TagContentType } from '@angular/compiler';
 
 @Injectable({ providedIn: 'root' })
@@ -28,7 +28,7 @@ export class AccountService {
             .pipe(map((accounts) => <Account[]>accounts));
     }
 
-    postAccount(account: NewAccount): Observable<any> {
+    postAccount(account: AddAccount): Observable<any> {
         console.log(JSON.stringify(account));
 
         return this.http
