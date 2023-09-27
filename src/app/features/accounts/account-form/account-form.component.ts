@@ -17,7 +17,7 @@ import { AddAccount } from 'src/app/core/models/account/add-account.model';
 })
 export class AccountFormComponent implements OnInit, OnDestroy {
   accountForm!: FormGroup;
-  account!: Account;
+  account: Account = new Account();
   loading: boolean = true;
   formErrors!: string;
   routeId!: number;
@@ -41,9 +41,7 @@ export class AccountFormComponent implements OnInit, OnDestroy {
     this.getBanks();
     this.getAccountTypes();
 
-    if (this.account === undefined) {
-      this.account = new Account();
-    }
+
 
     this.accountForm = this.formBuilder.group({
       description: [this.account.description, [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
@@ -73,6 +71,9 @@ export class AccountFormComponent implements OnInit, OnDestroy {
           },
           complete: () => this.loading = false
         });
+    }
+    else {
+        this.loading = false;
     }
   }
 
