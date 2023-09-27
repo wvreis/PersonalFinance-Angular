@@ -5,7 +5,7 @@
         class="form-check-input"
         type="checkbox"
         role="switch"
-        id="flexSwitchCheckDefault"        
+        id="flexSwitchCheckDefault"
         formControlName="status"
       />
       <label class="form-check-label" for="flexSwitchCheckDefault">Ativo</label>
@@ -34,14 +34,14 @@
     </div>
 
     <div class="mb-3 form-floating">
-      <select 
-        class="form-select" 
-        id="floatingSelect" 
+      <select
+        class="form-select"
+        id="floatingSelect"
         aria-label="Banco"
         formControlName="bankId"
       >
-        <option selected>Escolha um Banco</option>
-        <option *ngFor="let bank of banks$ | async" [ngValue]="bank.id">{{ bank.name }}</option>
+        <option [ngValue]="null" >Escolha um Banco</option>
+        <option *ngFor="let bank of banks" [ngValue]="bank.id">{{ bank.name }}</option>
       </select>
       <label for="floatingSelect">Banco</label>
     </div>
@@ -53,12 +53,13 @@
         aria-label="Tipo de Conta"
         formControlName="accountTypeId"
       >
-        <option selected>Escolha um Tipo de Conta</option>
-        <option *ngFor="let accountType of accountTypes$ | async" [ngValue]="accountType.id">{{ accountType.description }}</option>
+        <option [ngValue]="null" >Escolha um Tipo de Conta</option>
+        <option *ngFor="let accountType of accountTypes" [ngValue]="accountType.id">{{ accountType.description }}</option>
       </select>
       <label for="floatingSelect">Tipo de Conta</label>
     </div>
 
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <button type="submit" class="btn btn-success m-2">Salvar</button>
+    <a routerLink="/accounts" class="btn btn-secondary m-2">Listagem</a>
   </form>
 </div>

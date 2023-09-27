@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { Account } from 'src/app/core/models/account/account.model';
 import { AddAccount } from 'src/app/core/models/account/add-account.model';
 import { TagContentType } from '@angular/compiler';
+import { JsonPipe } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -29,10 +30,15 @@ export class AccountService {
     }
 
     postAccount(account: AddAccount): Observable<any> {
-        console.log(JSON.stringify(account));
-
         return this.http
             .post('accounts/PostAccount',JSON.stringify(account), {headers: {'content-type': 'application/json'}})
-            .pipe(map(resp => resp))
+            .pipe(map(resp => resp));
     }
+
+    putAccount(account: Account): Observable<any> {
+        return this.http
+            .put('accounts/PutAccount', JSON.stringify(account), {headers: {'content-type': 'application/json'}})
+            .pipe(map(resp => resp));
+    }
+
 }
