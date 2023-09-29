@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import { Account } from 'src/app/core/models/account/account.model';
-import { AccountService } from './account.service';
+import { AccountService } from '../../core/services/account.service';
 
 @Component({
   selector: 'app-accounts',
