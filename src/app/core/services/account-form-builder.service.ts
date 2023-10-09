@@ -18,6 +18,7 @@ export class AccountFormBuilderService {
           Validators.minLength(3),
           Validators.maxLength(200),
         ],
+        
       ],
       openingBalance: [account.openingBalance],
       status: [account.status],

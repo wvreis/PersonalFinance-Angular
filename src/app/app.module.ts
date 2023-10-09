@@ -14,6 +14,8 @@ import { ErrorInterceptor } from "./core/interceptors/error.interceptor";
 import { ApiInterceptor } from "./core/interceptors/api.interceptor";
 import { NavMenuComponent } from './core/layout/nav-menu/nav-menu.component';
 import { ErrorPopupComponent } from './shared/error-popup/error-popup.component';
+import { GeneralInputComponent } from './shared/inputs/general-input/general-input.component';
+import { SwitchInputComponent } from './shared/inputs/switch-input/switch-input.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ErrorPopupComponent } from './shared/error-popup/error-popup.component'
     TransactionsComponent,
     AccountFormComponent,
     NavMenuComponent,
-    ErrorPopupComponent
+    ErrorPopupComponent,
+    GeneralInputComponent,
+    SwitchInputComponent
   ],
   imports: [
     BrowserModule,

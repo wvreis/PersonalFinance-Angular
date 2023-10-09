@@ -1,0 +1,17 @@
+<div class="m-3">
+    <div class="form-check form-switch">
+        <label [for]="fieldName" class="form-check-label">{{ label }}</label>
+        <input
+            class="form-check-input"
+            [ngClass]="class"
+            role="switch"
+            type="checkbox"
+            [id]="fieldName"
+            [name]="fieldName"
+            [ngModel]="formFieldGetValue()"
+            (ngModelChange)="formFieldSetValue($event)"  
+            [disabled]="isReadOnly"  
+        />
+    </div>
+  </div>
+  
