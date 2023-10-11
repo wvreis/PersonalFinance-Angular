@@ -18,7 +18,7 @@ import { AccountFormBuilderService } from 'src/app/core/services/account-form-bu
 })
 export class AccountFormComponent implements OnInit, OnDestroy {
   accountForm!: FormGroup;
-  account!: Account;
+  account: Account = new Account();
   loading: boolean = true;
   formErrors!: string;
   routeId!: number;
@@ -38,7 +38,7 @@ export class AccountFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.routeId = +this.activatedRoute.snapshot.paramMap.get('id')!;
-    this.accountForm = this.accountFormBuilderService.buildFormGroup(this.accountService.newAccount());
+    this.accountForm = this.accountFormBuilderService.buildFormGroup(this.account);
     this.loadObjects();
   }
 
