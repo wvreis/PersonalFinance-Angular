@@ -18,7 +18,7 @@ import { AccountFormBuilderService } from 'src/app/core/services/account-form-bu
 })
 export class AccountFormComponent implements OnInit, OnDestroy {
   accountForm!: FormGroup;
-  account: Account = new Account();
+  account!: Account;
   loading: boolean = true;
   formErrors!: string;
   routeId!: number;
@@ -34,12 +34,12 @@ export class AccountFormComponent implements OnInit, OnDestroy {
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
     private readonly accountFormBuilderService: AccountFormBuilderService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.routeId = +this.activatedRoute.snapshot.paramMap.get('id')!;
+    this.accountForm = this.accountFormBuilderService.buildFormGroup(this.accountService.newAccount());
     this.loadObjects();
-    this.accountForm = this.accountFormBuilderService.buildFormGroup(this.account);
   }
 
   ngOnDestroy(): void {
@@ -47,7 +47,7 @@ export class AccountFormComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  loadObjects(): void{
+  loadObjects(): void {
     forkJoin([
       this.bankService.getBanks(),
       this.accountTypeService.getAccountTypes(),
@@ -59,7 +59,9 @@ export class AccountFormComponent implements OnInit, OnDestroy {
           this.getAccountTypes(value['1']);
           this.getAccount();
         },
-        complete: () => (this.loading = false),
+        complete: () => {
+          this.loading = false
+        },
       });
   }
 
@@ -72,6 +74,7 @@ export class AccountFormComponent implements OnInit, OnDestroy {
           next: (acc) => {
             this.accountFormBuilderService.fillAccountForm(this.accountForm, acc);
           },
+          error: (err) => this.handleNotFound()
         });
     }
   }
@@ -117,5 +120,10 @@ export class AccountFormComponent implements OnInit, OnDestroy {
         error: (errors) => console.log(errors),
         complete: () => this.router.navigate(['accounts']),
       });
+  }
+
+  handleNotFound(){
+    this.loading = true;
+    //improve this.
   }
 }

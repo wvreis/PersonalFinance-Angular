@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-error-popup',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./error-popup.component.css']
 })
 export class ErrorPopupComponent {
+  errorMessage!: string;
 
+  constructor(
+    private activeModal: NgbActiveModal
+  ) {
+
+  }
+
+  close(){
+    this.activeModal.close();
+  }
 }

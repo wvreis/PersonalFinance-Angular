@@ -13,6 +13,10 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
+  newAccount(): Account{
+    return new Account();
+  }
+
   getAccount(id: number): Observable<Account> {
     this.params = new HttpParams().set('id', id);
 
