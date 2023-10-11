@@ -3,12 +3,14 @@ import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest } from '@angular/c
 import { Observable, catchError, throwError } from 'rxjs';
 import { ErrorPopupComponent } from 'src/app/shared/error-popup/error-popup.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: "root" })
 export class ErrorInterceptor implements HttpInterceptor {
 
   constructor(
     private readonly ngbModal: NgbModal,
+    private readonly router: Router
   ) {
   }
 
@@ -25,6 +27,8 @@ export class ErrorInterceptor implements HttpInterceptor {
           error.error.error === undefined ?
           error.name :
           error.error.error.details;
+
+        this.router.navigate(['error']);
 
         return throwError(() => error);
       })

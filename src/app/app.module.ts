@@ -16,6 +16,7 @@ import { NavMenuComponent } from './core/layout/nav-menu/nav-menu.component';
 import { ErrorPopupComponent } from './shared/error-popup/error-popup.component';
 import { GeneralInputComponent } from './shared/inputs/general-input/general-input.component';
 import { SwitchInputComponent } from './shared/inputs/switch-input/switch-input.component';
+import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SwitchInputComponent } from './shared/inputs/switch-input/switch-input.
     NavMenuComponent,
     ErrorPopupComponent,
     GeneralInputComponent,
-    SwitchInputComponent
+    SwitchInputComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
