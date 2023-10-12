@@ -3,8 +3,6 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 import { Observable, map } from 'rxjs';
 import { Account } from 'src/app/core/models/account/account.model';
 import { AddAccount } from 'src/app/core/models/account/add-account.model';
-import { TagContentType } from '@angular/compiler';
-import { JsonPipe } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {

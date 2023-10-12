@@ -11,7 +11,6 @@ import { AccountService } from '../../core/services/account.service';
 export class AccountsComponent implements OnInit, OnDestroy {
   accounts!: Account[];
   @Input() searchInfo: string = '';
-  subscription!: Subscription;
   destroy$ = new Subject<void>();
   loading: boolean = true;
 
@@ -29,8 +28,6 @@ export class AccountsComponent implements OnInit, OnDestroy {
   }
 
   getAccounts(): void {
-    this.loading = true;
-
     this.accountService
       .getAccounts(this.searchInfo)
       .pipe(takeUntil(this.destroy$))
