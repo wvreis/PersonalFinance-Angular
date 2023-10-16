@@ -1,11 +1,12 @@
 import { FormGroup } from "@angular/forms";
+import { TransactionStatus } from "../../enums/transaction-status.enum";
 
 export class Transaction {
   id?: number;
   amount?: number;
   date?: Date;
   description?: string;
-  status?: number;
+  status?: TransactionStatus;
   nature?: number;
   accountId?: number;
   account?: string;

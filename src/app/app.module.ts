@@ -19,6 +19,7 @@ import { ErrorPopupComponent } from './shared/error-popup/error-popup.component'
 import { GeneralInputComponent } from './shared/inputs/general-input/general-input.component';
 import { SwitchInputComponent } from './shared/inputs/switch-input/switch-input.component';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
+import { TransactionFormComponent } from './features/transactions/transaction-form/transaction-form.component';
 
 registerLocaleData(localePt);
 
@@ -33,7 +34,8 @@ registerLocaleData(localePt);
     ErrorPopupComponent,
     GeneralInputComponent,
     SwitchInputComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    TransactionFormComponent
   ],
   imports: [
     BrowserModule,
