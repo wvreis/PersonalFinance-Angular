@@ -18,7 +18,7 @@ export class AddAccount {
     this.accountTypeId = accTypeId;
   }
 
-  fillProperties(accountForm: FormGroup) {
+  fillPropertiesFromForm(accountForm: FormGroup) {
     let valueSubmit = Object.assign({}, accountForm.value);
 
     this.description = valueSubmit['description'];

@@ -99,7 +99,7 @@ export class AccountFormComponent implements OnInit, OnDestroy {
 
   addAccount(): void {
     let newAccount = new AddAccount();
-    newAccount.fillProperties(this.accountForm);
+    newAccount.fillPropertiesFromForm(this.accountForm);
 
     this.accountService
       .postAccount(newAccount)

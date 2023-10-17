@@ -6,6 +6,10 @@ import { TransactionType } from 'src/app/core/models/transaction-type/transactio
 import { Account } from 'src/app/core/models/account/account.model';
 import { AccountService } from 'src/app/core/services/account/account.service';
 import { TransactionTypeService } from 'src/app/core/services/transaction/transaction-type.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TransactionFormBuilderService } from 'src/app/core/services/transaction/transaction-form-builder.service';
+import { TransactionService } from 'src/app/core/services/transaction/transaction.service';
+import { AddTransaction } from 'src/app/core/models/transaction/add-transaction.model';
 
 @Component({
   selector: 'app-transaction-form',
@@ -26,10 +30,16 @@ export class TransactionFormComponent implements OnInit, OnDestroy {
   constructor(
     private readonly accountService: AccountService,
     private readonly transactionTypeService: TransactionTypeService,
+    private readonly transactionService: TransactionService,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly transactionFormBuilderService: TransactionFormBuilderService,
+    private readonly router: Router
   ) {
-    
+
   }
   ngOnInit(): void {
+    this.routeId = +this.activatedRoute.snapshot.paramMap.get('id')!;
+    this.transactionForm = this.transactionFormBuilderService.buildFormGroup(this.transaction);
     this.loadObjects();
   }
   ngOnDestroy(): void {
@@ -40,11 +50,14 @@ export class TransactionFormComponent implements OnInit, OnDestroy {
   loadObjects(): void {
     forkJoin([
       this.transactionTypeService.getTransactionTypes(),
+      this.accountService.getAccounts('')
     ])
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (value: [transactionTypes: TransactionType[]]) => {
-          this.getTransactionTypes(value['0']);          
+        next: (value: [transactionTypes: TransactionType[], accounts: Account[]]) => {
+          this.getTransactionTypes(value['0']);
+          this.getAccounts(value['1']);
+          this.getTransaction();
         },
         complete: () => {
           this.loading = false
@@ -54,5 +67,64 @@ export class TransactionFormComponent implements OnInit, OnDestroy {
 
   getTransactionTypes(transactionTypes: TransactionType[]): void {
     this.transactionTypes = transactionTypes;
+  }
+
+  getAccounts(accounts: Account[]): void {
+    this.accounts = accounts;
+  }
+
+  getTransaction(): void {
+    if(this.routeId > 0){
+      this.transactionService
+        .getTransaction(this.routeId)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (transaction) => {
+            this.transactionFormBuilderService.fillTransactionForm(this.transactionForm, transaction)
+          },
+          error: (err) => this.handleNotFound()
+        });
+    }
+
+  }
+
+  onSubmit(): void {
+    if (this.transactionForm.valid) {
+      if (this.routeId == 0) {
+        this.addTransaction();
+      } else {
+        this.updateTransaction();
+      }
+    }
+  }
+
+  addTransaction(): void {
+    let newTransaction = new AddTransaction();
+    newTransaction.fillPropertiesFromForm(this.transactionForm);
+
+    this.transactionService
+      .postTransaction(newTransaction)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        error: (errors) => console.log(errors),
+        complete: () => this.router.navigate(['transactions']),
+      });
+  }
+
+  updateTransaction(): void {
+    this.transaction.fillTransactionWithFormValues(this.routeId, this.transactionForm);
+
+    this.transactionService
+      .putTransaction(this.transaction)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        error: (errors) => console.log(errors),
+        complete: () => this.router.navigate(['transactions']),
+      });
+  }
+
+  handleNotFound(){
+    this.loading = true;
+    //to do: improve this.
   }
 }

@@ -29,7 +29,7 @@ export class TransactionFormBuilderService {
 
   fillTransactionForm(transactionsForm: FormGroup, transaction: Transaction): void {
     transactionsForm.patchValue({
-      amount: transaction.description,
+      amount: transaction.amount,
       date: transaction.date,
       description: transaction.description,
       status: transaction.status,
