@@ -5,9 +5,6 @@ import { AccountType } from 'src/app/core/models/account-type/account-type.model
 
 @Injectable({ providedIn: 'root'})
 export class AccountTypeService {
-
-  accountType!: AccountType[];
-
   constructor(private http: HttpClient) { }
 
   getAccountTypes(): Observable<AccountType[]> {

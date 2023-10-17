@@ -6,12 +6,15 @@ import { PanelComponent } from './features/panel/panel.component';
 import { TransactionsComponent } from './features/transactions/transactions.component';
 import { AccountFormComponent } from './features/accounts/account-form/account-form.component';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
+import { TransactionFormComponent } from './features/transactions/transaction-form/transaction-form.component';
 
 const routes: Routes = [
   { path: 'accounts', component: AccountsComponent },
   { path: 'accounts/new', component: AccountFormComponent },
   { path: 'accounts/:id', component: AccountFormComponent },
   { path: 'transactions', component: TransactionsComponent },
+  { path: 'transactions/new', component: TransactionFormComponent },
+  { path: 'transactions/:id', component: TransactionFormComponent },
   { path: 'panel', component: PanelComponent },
   { path: 'error', component: ErrorPageComponent},
   { path: '*', component: AppComponent}

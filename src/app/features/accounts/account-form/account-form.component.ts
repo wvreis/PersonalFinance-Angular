@@ -3,13 +3,13 @@ import { FormGroup } from '@angular/forms';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, forkJoin, takeUntil } from 'rxjs';
 import { BankService } from './../../bank/bank.service';
-import { AccountService } from '../../../core/services/account.service';
-import { AccountTypeService } from '../../../core/services/account-type.service';
+import { AccountService } from '../../../core/services/account/account.service';
+import { AccountTypeService } from '../../../core/services/account/account-type.service';
 import { Account } from 'src/app/core/models/account/account.model';
 import { Bank } from 'src/app/core/models/bank/bank.model';
 import { AccountType } from 'src/app/core/models/account-type/account-type.model';
 import { AddAccount } from 'src/app/core/models/account/add-account.model';
-import { AccountFormBuilderService } from 'src/app/core/services/account-form-builder.service';
+import { AccountFormBuilderService } from 'src/app/core/services/account/account-form-builder.service';
 
 @Component({
   selector: 'app-account-form',
@@ -124,6 +124,6 @@ export class AccountFormComponent implements OnInit, OnDestroy {
 
   handleNotFound(){
     this.loading = true;
-    //improve this.
+    //to do: improve this.
   }
 }

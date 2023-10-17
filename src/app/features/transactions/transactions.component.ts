@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { Transaction } from 'src/app/core/models/transaction/transaction.model';
-import { TransactionService } from 'src/app/core/services/transaction.service';
+import { TransactionService } from 'src/app/core/services/transaction/transaction.service';
 
 @Component({
   selector: 'app-transactions',

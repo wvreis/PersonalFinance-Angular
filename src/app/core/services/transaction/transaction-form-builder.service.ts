@@ -1,6 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Injectable } from '@angular/core';
-import { Transaction } from '../models/transaction/transaction.model';
+import { Transaction } from '../../models/transaction/transaction.model';
 
 @Injectable({
   providedIn: 'root',

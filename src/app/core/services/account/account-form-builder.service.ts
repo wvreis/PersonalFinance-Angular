@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Account } from '../models/account/account.model';
+import { Account } from '../../models/account/account.model';
 
 @Injectable({ providedIn: 'root' })
 export class AccountFormBuilderService {
@@ -17,8 +17,7 @@ export class AccountFormBuilderService {
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(200),
-        ],
-        
+        ],        
       ],
       openingBalance: [account.openingBalance],
       status: [account.status],
