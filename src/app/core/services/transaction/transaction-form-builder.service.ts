@@ -20,7 +20,7 @@ export class TransactionFormBuilderService {
           Validators.maxLength(200),
         ],
       ],
-      status: [transaction.status],
+      status: [transaction.status, Validators.required],
       nature: [transaction.nature, Validators.required],
       accountId: [transaction.accountId, Validators.required],
       transactionTypeId: [transaction.transactionTypeId, Validators.required]

@@ -9,29 +9,13 @@
     <h3>{{ routeId > 0 ? 'Editando Movimentação' : 'Adicionando Movimentação'}}</h3>
 
     <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()" class="form-control d-flex flex-column">
-      <app-switch-input
-        label="Ativo"
-        fieldName="status"
-        frmControlName="status"
-        [(form)]="transactionForm"
-        class="align-self-end"
-      />
 
-      <!-- <app-general-input
+
+      <app-date-input
         label="Data"
-        fieldName="date"
-        formControlName="date"
+        frmControlName="date"
         [(form)]="transactionForm"
-      /> -->
-
-      <div class="mb-3">
-        <label for="date">Data</label>
-        <input
-          class="form-control"
-          type="date"
-          formControlName="date"
-        />        
-      </div>
+      />
 
       <app-general-input
         label="Descrição"
@@ -80,16 +64,50 @@
         <label for="floatingSelect">Conta</label>
       </div>
 
+      <div class="mb-3 form-floating">
+        <select
+          class="form-select"
+          id="floatingSelect"
+          aria-label="Situação"
+          formControlName="status"
+        >
+          <option
+            *ngFor="let status of transactionStatus"
+            [ngValue]="+status!"
+          >
+            {{ transactionStatusString[status] }}
+          </option>
+        </select>
+        <label for="floatingSelect">Situação</label>
+      </div>
+
+      <div class="mb-3 form-floating">
+        <select
+          class="form-select"
+          id="floatingSelect"
+          aria-label="Natureza"
+          formControlName="nature"
+        >
+          <option
+            *ngFor="let nature of transactionNature"
+            [ngValue]="+nature!"
+          >
+            {{ transactionNatureString[nature] }}
+          </option>
+        </select>
+        <label for="floatingSelect">Natureza</label>
+      </div>
+
       <button type="submit" class="btn btn-success m-2">Salvar</button>
       <a routerLink="/transactions" class="btn btn-secondary m-2">Listagem</a>
     </form>
   </div>
 </div>
 
-<span>
+<!-- <span>
   <div style="margin: 20px" *ngIf="transactionForm" >
     <div>Detalhes do form</div>
     <pre>Form válido: {{ transactionForm.valid }}</pre>
     <pre>Valores: <br>{{ transactionForm.value | json }}</pre>
   </div>
-</span>
+</span> -->

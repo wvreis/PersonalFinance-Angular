@@ -20,6 +20,7 @@ import { GeneralInputComponent } from './shared/inputs/general-input/general-inp
 import { SwitchInputComponent } from './shared/inputs/switch-input/switch-input.component';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
 import { TransactionFormComponent } from './features/transactions/transaction-form/transaction-form.component';
+import { DateInputComponent } from './shared/inputs/date-input/date-input.component';
 
 registerLocaleData(localePt);
 
@@ -35,7 +36,8 @@ registerLocaleData(localePt);
     GeneralInputComponent,
     SwitchInputComponent,
     ErrorPageComponent,
-    TransactionFormComponent
+    TransactionFormComponent,
+    DateInputComponent
   ],
   imports: [
     BrowserModule,

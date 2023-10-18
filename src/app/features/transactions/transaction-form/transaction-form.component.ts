@@ -10,6 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionFormBuilderService } from 'src/app/core/services/transaction/transaction-form-builder.service';
 import { TransactionService } from 'src/app/core/services/transaction/transaction.service';
 import { AddTransaction } from 'src/app/core/models/transaction/add-transaction.model';
+import { TransactionStatus, transactionStatusToString } from 'src/app/core/enums/transaction-status.enum';
+import { TransactionNature, transactionNatureToString } from 'src/app/core/enums/transaction-nature.enum';
 
 @Component({
   selector: 'app-transaction-form',
@@ -23,6 +25,11 @@ export class TransactionFormComponent implements OnInit, OnDestroy {
   formErros!: string;
   routeId!: number;
 
+  transactionStatusString: any = transactionStatusToString;
+  transactionNatureString: any = transactionNatureToString;
+  transactionStatus: Array<any> = Object.keys(TransactionStatus).filter(key => TransactionStatus[+key]);
+  transactionNature: Array<any> = Object.keys(TransactionNature).filter(key => TransactionNature[+key]);
+
   destroy$ = new Subject<void>();
   transactionTypes!: TransactionType[];
   accounts!: Account[];
@@ -34,14 +41,14 @@ export class TransactionFormComponent implements OnInit, OnDestroy {
     private readonly activatedRoute: ActivatedRoute,
     private readonly transactionFormBuilderService: TransactionFormBuilderService,
     private readonly router: Router
-  ) {
+  ) { }
 
-  }
   ngOnInit(): void {
     this.routeId = +this.activatedRoute.snapshot.paramMap.get('id')!;
     this.transactionForm = this.transactionFormBuilderService.buildFormGroup(this.transaction);
     this.loadObjects();
   }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
@@ -74,7 +81,7 @@ export class TransactionFormComponent implements OnInit, OnDestroy {
   }
 
   getTransaction(): void {
-    if(this.routeId > 0){
+    if (this.routeId > 0) {
       this.transactionService
         .getTransaction(this.routeId)
         .pipe(takeUntil(this.destroy$))
@@ -85,7 +92,6 @@ export class TransactionFormComponent implements OnInit, OnDestroy {
           error: (err) => this.handleNotFound()
         });
     }
-
   }
 
   onSubmit(): void {
@@ -123,7 +129,7 @@ export class TransactionFormComponent implements OnInit, OnDestroy {
       });
   }
 
-  handleNotFound(){
+  handleNotFound() {
     this.loading = true;
     //to do: improve this.
   }
