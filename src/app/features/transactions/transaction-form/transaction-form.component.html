@@ -17,6 +17,22 @@
         class="align-self-end"
       />
 
+      <!-- <app-general-input
+        label="Data"
+        fieldName="date"
+        formControlName="date"
+        [(form)]="transactionForm"
+      /> -->
+
+      <div class="mb-3">
+        <label for="date">Data</label>
+        <input
+          class="form-control"
+          type="date"
+          formControlName="date"
+        />        
+      </div>
+
       <app-general-input
         label="Descrição"
         fieldName="description"
@@ -36,7 +52,7 @@
           class="form-select"
           id="floatingSelect"
           aria-label="Conta"
-          formControlName="accountId"
+          formControlName="transactionTypeId"
         >
           <option [ngValue]="null">Escolha um Tipo de Movimentação</option>
           <option *ngFor="let transactionType of transactionTypes" [ngValue]="transactionType.id">
@@ -69,3 +85,11 @@
     </form>
   </div>
 </div>
+
+<span>
+  <div style="margin: 20px" *ngIf="transactionForm" >
+    <div>Detalhes do form</div>
+    <pre>Form válido: {{ transactionForm.valid }}</pre>
+    <pre>Valores: <br>{{ transactionForm.value | json }}</pre>
+  </div>
+</span>
