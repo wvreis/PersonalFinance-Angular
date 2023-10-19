@@ -1,4 +1,27 @@
 <div class="container">
+
+  <div class="d-flex">
+    <div class="w-50 m-2">
+      <label>Data Inicial</label>
+      <input
+        type="date"
+        class="form-control"
+        [(ngModel)]="startDate"
+        (input)="onDateChange()"
+      >
+    </div>
+
+    <div class="w-50 m-2">
+      <label>Data Final</label>
+      <input
+        type="date"
+        class="form-control"
+        [(ngModel)]="endDate"
+        (input)="onDateChange()"
+      >
+    </div>
+  </div>
+
   <div class="input-group mb-2">
     <span class="input-group-text" id="basic-addon1">🔎</span>
     <input

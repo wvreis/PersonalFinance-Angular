@@ -5,7 +5,7 @@ import { Transaction } from './../../../core/models/transaction/transaction.mode
 import { TransactionType } from 'src/app/core/models/transaction-type/transaction-type.model';
 import { Account } from 'src/app/core/models/account/account.model';
 import { AccountService } from 'src/app/core/services/account/account.service';
-import { TransactionTypeService } from 'src/app/core/services/transaction/transaction-type.service';
+import { TransactionTypeService } from 'src/app/core/services/transaction-type/transaction-type.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionFormBuilderService } from 'src/app/core/services/transaction/transaction-form-builder.service';
 import { TransactionService } from 'src/app/core/services/transaction/transaction.service';

@@ -11,8 +11,11 @@ export class TransactionService {
 
   constructor(private http: HttpClient) {}
 
-  getTransactions(searchInfo: string):Observable<Transaction[]> {
-    this.params = new HttpParams().set('searchInfo', searchInfo);
+  getTransactions(searchInfo: string, startDate: string | undefined, endDate: string | undefined):Observable<Transaction[]> {
+    this.params = new HttpParams()
+      .set('searchInfo', searchInfo)
+      .append(startDate !== undefined ? 'startDate' : '', startDate != undefined ? startDate : '')
+      .append(endDate !== undefined ? 'endDate' : '', endDate != undefined ? endDate : '');
 
     return this.http
       .get('transactions/GetTransactions', { params: this.params })

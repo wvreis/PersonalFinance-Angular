@@ -11,13 +11,15 @@ import { TransactionService } from 'src/app/core/services/transaction/transactio
 export class TransactionsComponent implements OnInit, OnDestroy {
   transactions!: Transaction[];
   @Input() searchInfo: string = '';
+  @Input() startDate?: string;
+  @Input() endDate?: string;
   destroy$ = new Subject<void>();
   loading: boolean = true;
 
   constructor(
     private transactionService: TransactionService
   ) {}
-  
+
   ngOnInit(): void {
     this.getTransactions();
   }
@@ -27,9 +29,9 @@ export class TransactionsComponent implements OnInit, OnDestroy {
       this.destroy$.complete();
   }
 
-  getTransactions(): void{
+  getTransactions(): void {
     this.transactionService
-      .getTransactions(this.searchInfo)
+      .getTransactions(this.searchInfo, this.startDate, this.endDate)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: transactionList => this.transactions = transactionList,
@@ -38,8 +40,14 @@ export class TransactionsComponent implements OnInit, OnDestroy {
       });
   }
 
-  cleanSearchInfo(): void{
+  cleanSearchInfo(): void {
     this.searchInfo = '';
+    this.startDate = undefined;
+    this.endDate = undefined;
+    this.getTransactions();
+  }
+
+  onDateChange(): void {
     this.getTransactions();
   }
 }
