@@ -1,51 +1,25 @@
 <div class="container">
 
   <div class="d-flex">
-    <div class="w-50 m-2">
+    <div class="w-50 mb-2">
       <label>Data Inicial</label>
-      <input
-        type="date"
-        class="form-control"
-        [(ngModel)]="startDate"
-        (input)="onDateChange()"
-      >
+      <input type="date" class="form-control" [(ngModel)]="startDate" (input)="onDateChange()">
     </div>
 
-    <div class="w-50 m-2">
+    <div class="w-50 mb-2">
       <label>Data Final</label>
-      <input
-        type="date"
-        class="form-control"
-        [(ngModel)]="endDate"
-        (input)="onDateChange()"
-      >
+      <input type="date" class="form-control" [(ngModel)]="endDate" (input)="onDateChange()">
     </div>
   </div>
 
   <div class="input-group mb-2">
     <span class="input-group-text" id="basic-addon1">🔎</span>
-    <input
-      type="text"
-      [(ngModel)]="searchInfo"
-      class="form-control"
-      placeholder="Pesquise uma movimentação..."
-      aria-label="search"
-      aria-describedby="basic-addon1"
-    />
-    <button
-      class="btn btn-outline-secondary"
-      type="button"
-      (click)="cleanSearchInfo()"
-      id="button-addon1"
-    >
+    <input type="text" [(ngModel)]="searchInfo" class="form-control" placeholder="Pesquise uma movimentação..."
+      aria-label="search" aria-describedby="basic-addon1" />
+    <button class="btn btn-outline-secondary" type="button" (click)="cleanSearchInfo()" id="button-addon1">
       ✖️
     </button>
-    <button
-      class="btn btn-outline-secondary"
-      type="button"
-      (click)="getTransactions()"
-      id="button-addon1"
-    >
+    <button class="btn btn-outline-secondary" type="button" (click)="getTransactions()" id="button-addon1">
       Pesquisar
     </button>
   </div>
@@ -57,7 +31,21 @@
   </div>
 
   <div class="row withoutDecoration" *ngIf="loading === false">
-    <div class="col-lg-6" *ngFor="let transaction of transactions">
+    <p-card header="Totais" class="mb-2">
+      <div class="d-flex w-100 justify-content-around">
+        <p class="align-self-center">
+          <span class="fw-bold">Entradas: </span>
+          <span class="fw-bolder text-success">{{ getInboundTransactionsSum() | currency : "R$" }}</span>
+        </p>
+        <p-divider layout="vertical"></p-divider>
+        <p class="align-self-center">
+          <span class="fw-bold">Saídas: </span>
+          <span class="fw-bolder text-danger">{{ getOutboundTransactionsSum() | currency : "R$" }}</span>
+        </p>
+      </div>
+    </p-card>
+
+    <div class="" *ngFor="let transaction of transactions">
       <a [routerLink]="transaction.id?.toString()" class="withoutDecoration">
         <div class="card p-3 mb-2">
           <div class="d-flex justify-content-between">
@@ -83,8 +71,7 @@
           </div>
           <div class="d-flex mt-4">
             <div class="col-8">
-              <span class="text1"
-                >{{ transaction.date | date: 'dd MMM yyyy' }}
+              <span class="text1">{{ transaction.date | date: 'dd MMM yyyy' }}
                 <span class="text2"> ({{ transaction.account }}) </span>
               </span>
             </div>
@@ -95,10 +82,7 @@
     </div>
   </div>
 
-  <button
-    class="btn btn-primary add-button"
-    routerLink="new"
-    title="Adicionar Nova Conta">
+  <button class="btn btn-primary add-button" routerLink="new" title="Adicionar Nova Conta">
     ✚
   </button>
 </div>

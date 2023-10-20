@@ -11,18 +11,31 @@ export class TransactionService {
 
   constructor(private http: HttpClient) {}
 
-  getTransactions(searchInfo: string, startDate: string | undefined, endDate: string | undefined):Observable<Transaction[]> {
+  getTransactions(
+    searchInfo: string | undefined,
+    startDate: string | undefined,
+    endDate: string | undefined
+  ): Observable<Transaction[]> {
     this.params = new HttpParams()
-      .set('searchInfo', searchInfo)
-      .append(startDate !== undefined ? 'startDate' : '', startDate != undefined ? startDate : '')
-      .append(endDate !== undefined ? 'endDate' : '', endDate != undefined ? endDate : '');
+      .set(
+        searchInfo !== undefined ? 'searchInfo' : '',
+        searchInfo !== undefined ? searchInfo : ''
+      )
+      .append(
+        startDate !== undefined ? 'startDate' : '',
+        startDate !== undefined ? startDate : ''
+      )
+      .append(
+        endDate !== undefined ? 'endDate' : '',
+        endDate !== undefined ? endDate : ''
+      );
 
     return this.http
       .get('transactions/GetTransactions', { params: this.params })
       .pipe(map((transactions) => <Transaction[]>transactions));
   }
 
-  getTransaction(id: number): Observable<Transaction>{
+  getTransaction(id: number): Observable<Transaction> {
     this.params = new HttpParams().set('id', id);
 
     return this.http
@@ -32,13 +45,17 @@ export class TransactionService {
 
   postTransaction(transaction: AddTransaction): Observable<any> {
     return this.http
-      .post('transactions/PostTransaction', JSON.stringify(transaction), { headers: { 'content-type': 'application/json' } })
-      .pipe(map(resp => resp));
+      .post('transactions/PostTransaction', JSON.stringify(transaction), {
+        headers: { 'content-type': 'application/json' },
+      })
+      .pipe(map((resp) => resp));
   }
 
   putTransaction(transaction: Transaction): Observable<any> {
     return this.http
-      .put('transactions/PutTransaction', JSON.stringify(transaction), { headers: { 'content-type': 'application/json' } })
-      .pipe(map(resp => resp));
+      .put('transactions/PutTransaction', JSON.stringify(transaction), {
+        headers: { 'content-type': 'application/json' },
+      })
+      .pipe(map((resp) => resp));
   }
 }

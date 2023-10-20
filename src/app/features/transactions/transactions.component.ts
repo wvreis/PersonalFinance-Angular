@@ -1,23 +1,24 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
+import { TransactionNature } from 'src/app/core/enums/transaction-nature.enum';
 import { Transaction } from 'src/app/core/models/transaction/transaction.model';
 import { TransactionService } from 'src/app/core/services/transaction/transaction.service';
 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
-  styleUrls: ['./transactions.component.css']
+  styleUrls: ['./transactions.component.css'],
 })
 export class TransactionsComponent implements OnInit, OnDestroy {
   transactions!: Transaction[];
-  @Input() searchInfo: string = '';
+  @Input() searchInfo?: string;
   @Input() startDate?: string;
   @Input() endDate?: string;
   destroy$ = new Subject<void>();
   loading: boolean = true;
 
   constructor(
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
   ) {}
 
   ngOnInit(): void {
@@ -25,8 +26,8 @@ export class TransactionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.destroy$.next();
-      this.destroy$.complete();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   getTransactions(): void {
@@ -34,9 +35,9 @@ export class TransactionsComponent implements OnInit, OnDestroy {
       .getTransactions(this.searchInfo, this.startDate, this.endDate)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: transactionList => this.transactions = transactionList,
-        error: err => console.log(err.name),
-        complete: () => this.loading = false
+        next: (transactionList) => (this.transactions = transactionList),
+        error: (err) => console.log(err.name),
+        complete: () => (this.loading = false),
       });
   }
 
@@ -49,5 +50,19 @@ export class TransactionsComponent implements OnInit, OnDestroy {
 
   onDateChange(): void {
     this.getTransactions();
+  }
+
+  getInboundTransactionsSum(): number {
+    return this.transactions
+      .filter(transaction => transaction.nature == TransactionNature.inbound)
+      .reduce((accumulator, transaction) =>
+        accumulator + <number>transaction.amount, 0);
+  }
+
+  getOutboundTransactionsSum(): number {
+    return this.transactions
+      .filter(transaction => transaction.nature == TransactionNature.outbound)
+      .reduce((accumulator, transaction) =>
+        accumulator + <number>transaction.amount, 0);
   }
 }
